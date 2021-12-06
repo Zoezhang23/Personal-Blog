@@ -1,0 +1,60 @@
+.article {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    display: fix;
+    justify-content: space-between;
+
+    .infinite-scroll-component__outerdiv {
+        margin-bottom: 128px;
+        border-bottom: 1px white solid;
+        margin-right: 15%;
+
+
+        .infinite-scroll-component {
+            overflow: hidden !important;
+
+            .ant-list-item {
+                padding: 30px;
+                width: 100%;
+                height: 100%;
+                left: 20%;
+                top: 20%;
+                margin-bottom: 2%;
+                background: #6d6d6d !important;
+            }
+
+            .ant-list-split .ant-list-item {
+                border: 0;
+            }
+
+            .ant-card-body {
+                display: none;
+
+            }
+        }
+
+        .ant-list-vertical .ant-list-item-action {
+            float: right;
+            margin-top: 0;
+        }
+    }
+
+    .ant-card-body {
+        .ant-card-meta-detail {
+            .ant-card-meta-title {
+                margin-bottom: 0px;
+                display: inline-block;
+                color: rgb(226, 190, 101);
+            }
+
+            .ant-card-meta-description {
+                color: rgb(226, 190, 101);
+
+            }
+        }
+    }
+}

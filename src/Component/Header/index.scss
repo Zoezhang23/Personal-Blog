@@ -1,0 +1,24 @@
+.ant-layout,
+.ant-layout * {
+    box-sizing: border-box;
+    background-color: transparent !important;
+
+    .ant-menu-dark.ant-menu-horizontal>.ant-menu-item:hover {
+        color: green !important;
+    }
+
+    .logo {
+
+        float: left;
+        color: #fff;
+    }
+
+    .ant-menu-overflow {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .ant-menu {
+        font-size: 16px;
+    }
+}
