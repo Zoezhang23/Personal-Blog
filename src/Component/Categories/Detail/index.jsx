@@ -17,8 +17,7 @@ for (let i = 1; i < 15; i++) {
 }
 
 export default function Detail() {
-    const { id } = useParams()
-    console.log(id);
+    const { name } = useParams()
     return (
         <div className='detail'>
             <div style={{ fontSize: 16 }}>Technology--(14)</div>

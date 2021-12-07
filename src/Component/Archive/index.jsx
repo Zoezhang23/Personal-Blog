@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './index.scss'
 import { Timeline } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import bg from '../Images/background.png'
+import bg from '../Images/archivBkg.jpg'
 
 export default class Archive extends Component {
     getBgImg = () => {

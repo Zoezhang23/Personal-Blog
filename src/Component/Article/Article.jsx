@@ -4,9 +4,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { MessageOutlined, LikeOutlined, StarOutlined, TagTwoTone, AppstoreTwoTone } from '@ant-design/icons';
 import { Card } from 'antd';
 import artItem from '../Images/artItem.png'
-
-const { Meta } = Card;
-export function Article() {
+import cover2 from '../Images/artItem2.png'
+import { Link } from 'react-router-dom';
+export default function Article() {
     return (
         <>
             {InfiniteListExample()}
@@ -56,7 +56,7 @@ const InfiniteListExample = () => {
                         comments: 100,
                         category: 'Technology',
                         tag: 'React',
-                        cover: artItem,
+                        cover: cover2,
                     },
                     {
                         id: 3,
@@ -80,7 +80,7 @@ const InfiniteListExample = () => {
                         comments: 100,
                         category: 'Technology',
                         tag: 'React',
-                        cover: artItem,
+                        cover: cover2,
                     },
                     {
                         id: 5,
@@ -104,7 +104,7 @@ const InfiniteListExample = () => {
                         comments: 100,
                         category: 'Technology',
                         tag: 'React',
-                        cover: artItem,
+                        cover: cover2,
                     },
                     {
                         id: 7,
@@ -128,7 +128,7 @@ const InfiniteListExample = () => {
                         comments: 100,
                         category: 'Technology',
                         tag: 'React',
-                        cover: artItem,
+                        cover: cover2,
                     },
                     {
                         id: 9,
@@ -138,7 +138,7 @@ const InfiniteListExample = () => {
                         views: 100,
                         liked: 100,
                         comments: 100,
-                        category: 'Technology',
+                        category: 'technology',
                         tag: 'React',
                         cover: artItem,
                     },
@@ -150,9 +150,9 @@ const InfiniteListExample = () => {
                         views: 100,
                         liked: 100,
                         comments: 100,
-                        category: 'Fashion',
+                        category: 'technology',
                         tag: 'React',
-                        cover: artItem,
+                        cover: cover2,
                     },
                     {
                         id: 11,
@@ -162,7 +162,7 @@ const InfiniteListExample = () => {
                         views: 100,
                         liked: 100,
                         comments: 100,
-                        category: 'Life',
+                        category: 'technology',
                         tag: 'React',
                         cover: artItem,
                     },
@@ -200,7 +200,7 @@ const InfiniteListExample = () => {
             <InfiniteScroll
                 dataLength={data.length}
                 next={loadMoreData}
-                hasMore={data.length < 50}
+                hasMore={data.length < 5}
                 loader={<Skeleton avatar paragraph={{ rows: 1 }} active={true} />}
                 endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
                 scrollableTarget="scrollableDiv"
@@ -225,16 +225,16 @@ const InfiniteListExample = () => {
                                     </Card>
                                     <div style={{ marginLeft: 10, width: '60%' }}>
                                         <List.Item.Meta
-                                            title={<a href='#' style={{ color: '#fff', fontSize: 18 }}>{item.title}</a>}
+                                            title={<Link to={`detail/${item.id}`} style={{ color: '#fff', fontSize: 18 }}>{item.title}</Link>}
                                         />
                                         <div style={{ overflow: 'auto', color: '#fff' }}>
                                             {item.content}
                                             <div style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                                                 <div>
                                                     <TagTwoTone twoToneColor='purple' style={{ fontSize: 30 }} />
-                                                    <span>{item.tag}</span>
+                                                    <Link to={`/tag/detail/${item.tag}`} style={{ color: '#fff' }}>{item.tag}</Link>
                                                     <AppstoreTwoTone twoToneColor='green' style={{ fontSize: 30 }} />
-                                                    <span>{item.category}</span>
+                                                    <Link to={`/categories/detail/${item.category}`} style={{ color: '#fff' }}>{item.category}</Link>
                                                 </div>
                                                 <div>{item.date}</div>
                                             </div>

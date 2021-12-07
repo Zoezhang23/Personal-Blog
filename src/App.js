@@ -11,6 +11,8 @@ import TagCloud from './Component/Tag/TagCloud'
 import TagDetail from './Component/Tag/Detail/index'
 import About from './Component/About'
 import Articles from './Component/Article/index'
+import Article from './Component/Article/Article'
+import ArticleDetail from './Component/Article/Detail/index'
 
 
 
@@ -26,7 +28,7 @@ export default class App extends Component {
             <Route path="archive" element={<Archives />} />
             <Route path="categories/*" element={<Categories />}>
               <Route path="" element={<CategoryItems />} />
-              <Route path="detail/:id" element={<CategDetail />} />
+              <Route path="detail/:name" element={<CategDetail />} />
             </Route>
             <Route path="tag/*" element={<Tags />}>
               <Route path="" element={<TagCloud />} />
@@ -34,7 +36,8 @@ export default class App extends Component {
             </Route>
             <Route path='about/*' element={<About />} />
             <Route path='article/*' element={<Articles />}>
-
+              <Route path='' element={< Article />} />
+              <Route path='detail/:id' element={< ArticleDetail />} />
             </Route>
           </Route>
         </Routes>

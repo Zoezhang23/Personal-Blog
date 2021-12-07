@@ -3,7 +3,6 @@ import { Card } from 'antd';
 import { LinkedinFilled, InstagramFilled, GithubFilled } from '@ant-design/icons';
 import me from '../Images/me.jpg'
 import './index.scss'
-import { colors } from '../utilis';
 
 const { Meta } = Card;
 export default function LeftSide() {

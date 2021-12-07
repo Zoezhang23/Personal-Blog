@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './index.scss'
-import bg from '../Images/tagBkg.png'
+import bg from '../Images/tagBkg.jpg'
 import { Outlet } from 'react-router';
 
 

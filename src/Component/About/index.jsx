@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import bg1 from '../Images/aboutBkg.png'
-import bg2 from '../Images/aboutBkg2.png'
-import bg3 from '../Images/aboutBkg3.png'
-import bg4 from '../Images/aboutBkg4.png'
+import bg1 from '../Images/aboutBkg.jpg'
+import bg2 from '../Images/aboutBkg2.jpg'
+import bg3 from '../Images/aboutBkg3.jpg'
+import bg4 from '../Images/aboutBkg4.jpg'
 import me from '../Images/me.jpg'
 
 import './index.scss'
