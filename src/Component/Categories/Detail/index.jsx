@@ -20,7 +20,7 @@ export default function Detail() {
     const { name } = useParams()
     return (
         <div className='detail'>
-            <div style={{ fontSize: 16 }}>Technology--(14)</div>
+            <div style={{ fontSize: 16 }}>{name}--(14)</div>
             <List
                 itemLayout="vertical"
                 size="large"

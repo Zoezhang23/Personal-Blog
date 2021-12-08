@@ -13,6 +13,7 @@ import About from './Component/About'
 import Articles from './Component/Article/index'
 import Article from './Component/Article/Article'
 import ArticleDetail from './Component/Article/Detail/index'
+import Register from './Component/Register/index'
 
 
 
@@ -24,7 +25,9 @@ export default class App extends Component {
         <Routes>
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/*" element={<Home />} >
-            <Route path="home" element={<Main />} />
+            <Route path="home/*" element={<Main />} >
+              <Route path="register" element={<Register />} />
+            </Route>
             <Route path="archive" element={<Archives />} />
             <Route path="categories/*" element={<Categories />}>
               <Route path="" element={<CategoryItems />} />

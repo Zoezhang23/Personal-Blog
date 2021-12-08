@@ -95,12 +95,21 @@
         .icons {
             display: flex;
             justify-content: space-between;
+            margin-top: -29px;
 
-            .ant-space-item {
-                font-weight: 700;
+            .ant-comment-actions li span {
                 color: rgb(226, 190, 101);
-                ;
+                font-size: medium;
+                font-weight: 700;
             }
         }
+
+        // .editor {
+    //     background-color: #fff;
+
+    //     .ant-form-item-control-input-content button {
+    //         background-color: black !important;
+    //     }
+    // }
     }
 }

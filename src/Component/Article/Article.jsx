@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, Skeleton, Divider, Space, } from 'antd';
+import { List, Skeleton, Divider, Space } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { MessageOutlined, LikeOutlined, StarOutlined, TagTwoTone, AppstoreTwoTone } from '@ant-design/icons';
 import { Card } from 'antd';
@@ -7,15 +7,19 @@ import artItem from '../Images/artItem.png'
 import cover2 from '../Images/artItem2.png'
 import { Link } from 'react-router-dom';
 export default function Article() {
+
     return (
         <>
+
             {InfiniteListExample()}
+
         </>
     )
 }
 const InfiniteListExample = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
+
     const IconText = ({ icon, text }) => (
         <Space style={{ color: '#fff' }}>
             {React.createElement(icon)}
@@ -184,6 +188,7 @@ const InfiniteListExample = () => {
     }, []);
 
     return (
+
         <div
             id="scrollableDiv"
             style={{
@@ -197,6 +202,8 @@ const InfiniteListExample = () => {
                 position: 'absolute'
             }}
         >
+
+
             <InfiniteScroll
                 dataLength={data.length}
                 next={loadMoreData}
@@ -205,6 +212,7 @@ const InfiniteListExample = () => {
                 endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
                 scrollableTarget="scrollableDiv"
             >
+
                 <List
                     itemLayout="horizontal"
                     dataSource={data}
@@ -218,10 +226,10 @@ const InfiniteListExample = () => {
                                 ]}
                             >
                                 <div style={{ display: 'flex' }}>
-                                    <Card hoverable style={{ width: '30%', backgroundColor: 'white !important' }} bordered={false} cover={<img alt="avatar" src={item.cover} />}
+
+                                    <Card hoverable style={{ width: '30%' }} bordered={false} cover={<img alt="avatar" src={item.cover} />}
                                         type='inner'
                                     >
-
                                     </Card>
                                     <div style={{ marginLeft: 10, width: '60%' }}>
                                         <List.Item.Meta
@@ -240,13 +248,16 @@ const InfiniteListExample = () => {
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                             </List.Item>
 
                         )}
                 />
+
             </InfiniteScroll>
+
         </div>
     );
 };
