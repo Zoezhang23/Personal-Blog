@@ -1,24 +1,31 @@
 import React from 'react'
 import { List } from 'antd';
+import { ARTICLE_DATA } from '../../data'
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom'
 
 
-const listData = [];
-
-for (let i = 1; i < 15; i++) {
-    listData.push({
-        title: `${i}`,
-        date: '01 / 12 / 2021',
-        description:
-            'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content:
-            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    });
+const getData = (name) => {
+    return ARTICLE_DATA.filter(item => item.tag === name)
 }
 
+// for (let i = 1; i < 15; i++) {
+//     listData.push({
+//         title: `${i}`,
+//         date: '01 / 12 / 2021',
+//         description:
+//             'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+//         content:
+//             'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+//     });
+// }
+
 export default function Detail() {
+    const { name } = useParams();
+    const listData = getData(name)
     return (
         <div className='detail'>
-            <div style={{ fontSize: 16 }}>Technology--(14)</div>
+            <div style={{ fontSize: 16 }}>{name}--({listData.length})</div>
             <List
                 itemLayout="vertical"
                 size="large"
@@ -30,9 +37,10 @@ export default function Detail() {
                 }}
                 dataSource={listData}
                 renderItem={item => (
-                    <List.Item key={item.title}>
-                        {item.description}
-                        <span> ---{item.date}</span>
+                    <List.Item key={item.id}>
+                        <Link to={`/article/detail/${item.id}`} style={{ color: '#fff' }}>
+                            {item.description}
+                            <span> ---{item.date}</span></Link>
                     </List.Item>
                 )}
             />

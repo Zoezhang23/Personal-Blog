@@ -1,0 +1,16 @@
+.login {
+    background-color: rgb(238, 236, 236) !important;
+    position: absolute;
+    left: 35%;
+    top: 25%;
+    width: 30%;
+    overflow: hidden;
+
+    .ant-btn-primary {
+        background: #1890ff !important;
+    }
+
+    .ant-btn-dangerous {
+        background: #ff7875 !important;
+    }
+}

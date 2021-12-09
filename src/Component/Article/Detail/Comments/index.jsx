@@ -5,13 +5,13 @@ import { LikeFilled, StarFilled, LikeOutlined, StarOutlined, MessageFilled } fro
 import { ARTICLE_DATA } from '../../../data';
 
 
+
 // This is for like 
 export const Comments = (id) => {
     const item = ARTICLE_DATA.find(item => item.id === id)
     const [likes, setLikes] = useState(item.views);
     const [dislikes, setDislikes] = useState(item.liked);
     const [action, setAction] = useState(null);
-
     const like = () => {
         setLikes(item.views + 1);
         // setDislikes(item.liked);
@@ -43,9 +43,6 @@ export const Comments = (id) => {
     return (<Comment actions={actions} />)
 
 }
-
-
-
 //------This is for adding new comments-------------
 
 const { TextArea } = Input;
@@ -71,6 +68,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
         </Form.Item>
     </>
 );
+const user = JSON.parse(localStorage.getItem('user'));
 
 export default class CommentsEditor extends React.Component {
     state = {
@@ -89,19 +87,36 @@ export default class CommentsEditor extends React.Component {
         });
 
         setTimeout(() => {
-            this.setState({
-                submitting: false,
-                value: '',
-                comments: [
-                    ...this.state.comments,
-                    {
-                        author: 'Han Solo',
-                        avatar: 'https://joeschmoe.io/api/v1/random',
-                        content: <p>{this.state.value}</p>,
-                        datetime: moment().fromNow(),
-                    },
-                ],
-            });
+            if (user !== null) {
+                this.setState({
+                    submitting: false,
+                    value: '',
+                    comments: [
+                        ...this.state.comments,
+                        {
+                            author: user.username,
+                            avatar: user.avatar,
+                            content: <p>{this.state.value}</p>,
+                            datetime: moment().fromNow(),
+                        },
+                    ],
+                });
+            } else {
+                this.setState({
+                    submitting: false,
+                    value: '',
+                    comments: [
+                        ...this.state.comments,
+                        {
+                            author: 'Anonymous visitor',
+                            avatar: 'https://joeschmoe.io/api/v1/random',
+                            content: <p>{this.state.value}</p>,
+                            datetime: moment().fromNow(),
+                        },
+                    ],
+                });
+            }
+
         }, 1000);
     };
 
@@ -113,11 +128,12 @@ export default class CommentsEditor extends React.Component {
 
     render() {
         const { comments, submitting, value } = this.state;
+        console.log(user)
         return (
             <>
                 {comments.length > 0 && <CommentList comments={comments} />}
                 <Comment
-                    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                    avatar={user ? <Avatar src={user.avatar} /> : <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
                     content={
                         <Editor
                             onChange={this.handleChange}

@@ -3,19 +3,13 @@ import { useParams } from 'react-router'
 import '../index.scss'
 import { TagTwoTone, AppstoreTwoTone } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { Space, } from 'antd';
 import { Comments } from './Comments/index'
 import { ARTICLE_DATA } from '../../data'
 import CommentsEditor from './Comments/index'
 
 
 
-const IconText = ({ icon, text }) => (
-    <Space style={{ color: '#fff' }}>
-        {React.createElement(icon)}
-        {text}
-    </Space>
-);
+
 export default function Detail() {
     const { id } = useParams();
     const item = ARTICLE_DATA.find(item => item.id === id);
@@ -25,6 +19,7 @@ export default function Detail() {
             <div style={{ display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
                 <div className='cover' style={{ backgroundImage: `url(${item.cover})` }}></div>
                 <div className='title'>{item.title}</div>
+                <div className='descp'>{item.description}</div>
                 <div className='content'>{item.content}</div>
                 <div className='extra'>
                     <div>
@@ -39,7 +34,7 @@ export default function Detail() {
                     </div>
                     <div>{item.date}</div>
                 </div>
-                <div >
+                <div style={{ padding: 30 }}>
                     {<CommentsEditor />}
                 </div>
 

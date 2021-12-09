@@ -81,7 +81,8 @@
 
     }
 
-    .content {
+    .content,
+    .descp {
         padding: 20px 40px;
     }
 
@@ -105,11 +106,11 @@
         }
 
         // .editor {
-    //     background-color: #fff;
+        //     background-color: #fff;
 
-    //     .ant-form-item-control-input-content button {
-    //         background-color: black !important;
-    //     }
-    // }
+        //     .ant-form-item-control-input-content button {
+        //         background-color: black !important;
+        //     }
+        // }
     }
 }

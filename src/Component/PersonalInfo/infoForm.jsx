@@ -1,20 +1,28 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Form, Input, Select, Checkbox, Button, Result, } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
-import './index.scss'
+import {
+    Form, Input, Select, Button,
+} from 'antd';
+import MyAvatar from './avatar'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 
 const { Option } = Select;
-
 const formItemLayout = {
     labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 8,
+        },
     },
     wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 16,
+        },
     },
 };
 const tailFormItemLayout = {
@@ -29,17 +37,27 @@ const tailFormItemLayout = {
         },
     },
 };
+const userInfo = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user;
+}
 
 
-export function Register() {
+export default function InfoForm() {
     const navigate = useNavigate();
     const [form] = Form.useForm();
-
     const onFinish = (values) => {
-        localStorage.setItem('user', JSON.stringify(values));
-        navigate('/home/registerSuccess')
+        const newValues = {
+            ...values,
+            avatar: url
+        }
+        localStorage.setItem('user', JSON.stringify(newValues));
+        navigate('/home')
+    };
+    const onChange = (newFields) => {
+        setFields(newFields);
     }
-
+    const user = userInfo();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -52,21 +70,57 @@ export function Register() {
             </Select>
         </Form.Item>
     );
+    const [url, updateUrl] = useState(user.avatar);
+    const handler = (data) => {
+        updateUrl(data)
+    }
+    const [fields, setFields] = useState([
+        {
+            name: ['username'],
+            value: user.username,
+        },
+        {
+            name: ['password'],
+            value: user.password,
+        },
+        {
+            name: ['confirm'],
+            value: user.confirm,
+        },
+        {
+            name: ['email'],
+            value: user.email,
+        },
+        {
+            name: ['phone'],
+            value: user.phone,
+        },
+
+    ]);
+
     return (
-        <div className='register'>
+        <div>
             <Form
                 {...formItemLayout}
                 form={form}
                 name="register"
                 onFinish={onFinish}
                 initialValues={{
-                    residence: ['Eindhoiven', 'NL'],
+                    residence: ['Eindhoven', 'NL'],
                     prefix: '31',
                 }}
-                size='small'
                 scrollToFirstError
+                fields={fields}
+                onFieldsChange={(_, allFields) => {
+                    onChange(allFields);
+                }}
             >
-                <span style={{ color: '#000', fontWeight: 700 }}>Register</span>
+                <Form.Item
+                    name="avatar"
+                    label="Avatar">
+                    <MyAvatar urlUpdateProp={handler} originImg={user.avatar ? user.avatar : ''} />
+                </Form.Item>
+
                 <Form.Item
                     name="email"
                     label="E-mail"
@@ -76,7 +130,7 @@ export function Register() {
                             message: 'The input is not valid E-mail!',
                         },
                         {
-                            required: true,
+
                             message: 'Please input your E-mail!',
                         },
                     ]}
@@ -86,10 +140,10 @@ export function Register() {
 
                 <Form.Item
                     name="password"
-                    label="Password"
+                    label="Change Password"
                     rules={[
                         {
-                            required: true,
+
                             message: 'Please input your password!',
                         },
                     ]}
@@ -105,7 +159,7 @@ export function Register() {
                     hasFeedback
                     rules={[
                         {
-                            required: true,
+
                             message: 'Please confirm your password!',
                         },
                         ({ getFieldValue }) => ({
@@ -113,6 +167,7 @@ export function Register() {
                                 if (!value || getFieldValue('password') === value) {
                                     return Promise.resolve();
                                 }
+
                                 return Promise.reject(new Error('The two passwords that you entered do not match!'));
                             },
                         }),
@@ -123,83 +178,42 @@ export function Register() {
 
                 <Form.Item
                     name="username"
-                    label="UserName"
+                    label="User Name"
                     tooltip="What do you want others to call you?"
-                    rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                    rules={[
+                        {
+
+                            message: 'Please input your nickname!',
+                            whitespace: true,
+                        },
+                    ]}
                 >
                     <Input />
                 </Form.Item>
+
                 <Form.Item
                     name="phone"
                     label="Phone Number"
-                    rules={[{ required: true, message: 'Please input your phone number!' }]}
-                >
-                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
-                </Form.Item>
-                {/* <Form.Item label="Verify code" extra="We must make sure that your are a human.">
-                    <Row gutter={8}>
-                        <Col span={12}>
-                            <Form.Item
-                                name="captcha"
-                                noStyle
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input verify code from your phone',
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Button>Get Code</Button>
-                        </Col>
-                    </Row>
-                </Form.Item> */}
-                <Form.Item
-                    name="agreement"
-                    valuePropName="checked"
                     rules={[
                         {
-                            validator: (_, value) =>
-                                value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+
+                            message: 'Please input your phone number!',
                         },
                     ]}
-                    {...tailFormItemLayout}
                 >
-                    <Checkbox>
-                        I have read the <a href="">agreement</a>
-                    </Checkbox>
+                    <Input
+                        addonBefore={prefixSelector}
+                        style={{
+                            width: '100%',
+                        }}
+                    />
                 </Form.Item>
-                <Form.Item {...tailFormItemLayout} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
-                        Register
+                        Save
                     </Button>
-                    <Link to='/home'><Button type="primary" style={{ left: '20%' }}>
-                        Back
-                    </Button></Link>
                 </Form.Item>
             </Form>
         </div>
-    )
-
-}
-// -----------This is for success register----------
-export function RegisterSuccess() {
-    const navigate = useNavigate();
-    return (
-        <div className='register-success'>
-            <Result
-                icon={<SmileOutlined />}
-                title="Great, Success!"
-                extra={<Button type="primary" onClick={() => { navigate('/home') }}>Close</Button>}
-            />
-        </div>
-    )
-}
-
-
-
-
-
+    );
+};

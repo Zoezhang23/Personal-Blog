@@ -1,37 +1,34 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import pic from '../../Images/cateItem.jpg'
-import pic2 from '../../Images/cateItem2.jpg'
-import pic3 from '../../Images/cateItem3.jpg'
-import pic4 from '../../Images/cateItem4.jpg'
-
+import { ARTICLE_DATA } from '../../data'
 import '../index.scss'
-const categories = [{
-    name: 'technology',
-    img: pic,
-    number: 1
-},
-{
-    name: 'art',
-    img: pic2,
-    number: 1
-},
-{
-    name: 'life',
-    img: pic3,
-    number: 1
-},
-{
-    name: 'fashion',
-    img: pic4,
-    number: 1
+
+
+const getData = () => {
+    const cate = [];
+    ARTICLE_DATA.forEach(item => {
+        const index = cate.findIndex(c => c.name === item.category);
+        if (index > -1) {
+            cate[index].number++;
+            // c.number++;
+        } else {
+            cate.push({
+                name: item.category,
+                img: pic,
+                number: 1
+            });
+        }
+    })
+    return cate;
 }
-]
+
 
 function CategoryItem(props) {
+    const cate = getData();
     const navigate = useNavigate();
     const { detailName } = props
-    const item = categories.find(item => item.name === detailName)
+    const item = cate.find(item => item.name === detailName);
     function handleClick() {
         return () => {
             navigate(`detail/${detailName}`)
@@ -69,10 +66,11 @@ function CategoryItem(props) {
     )
 }
 export default function CategoryItems() {
+    const cate = getData();
     return (
         <div className="content">
             <div className="cols">
-                {categories.map(item => {
+                {cate.map(item => {
                     return <CategoryItem detailName={item.name} />
                 })}
             </div>

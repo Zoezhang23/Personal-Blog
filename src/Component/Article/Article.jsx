@@ -3,9 +3,8 @@ import { List, Skeleton, Divider, Space } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { MessageOutlined, LikeOutlined, StarOutlined, TagTwoTone, AppstoreTwoTone } from '@ant-design/icons';
 import { Card } from 'antd';
-import artItem from '../Images/artItem.png'
-import cover2 from '../Images/artItem2.png'
 import { Link } from 'react-router-dom';
+import { ARTICLE_DATA } from '../data'
 export default function Article() {
 
     return (
@@ -37,141 +36,7 @@ const InfiniteListExample = () => {
             .then(body => {
                 // set for test 
                 // setData([...data, ...body.results]);
-                setData([
-                    {
-                        id: 1,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-                    {
-                        id: 2,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: cover2,
-                    },
-                    {
-                        id: 3,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-                    {
-                        id: 4,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: cover2,
-                    },
-                    {
-                        id: 5,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-                    {
-                        id: 6,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: cover2,
-                    },
-                    {
-                        id: 7,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-                    {
-                        id: 8,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'Technology',
-                        tag: 'React',
-                        cover: cover2,
-                    },
-                    {
-                        id: 9,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-                    {
-                        id: 10,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'technology',
-                        tag: 'React',
-                        cover: cover2,
-                    },
-                    {
-                        id: 11,
-                        title: 'React',
-                        content: "My strengths lie in my ability to learn quickly and have a pleasant disposition, and I can work effectively in dynamic environments. I am able to adapt to challenging work and to commit to project development in a short period of time.",
-                        date: '06/12/2021',
-                        views: 100,
-                        liked: 100,
-                        comments: 100,
-                        category: 'technology',
-                        tag: 'React',
-                        cover: artItem,
-                    },
-
-                ]);
+                setData(ARTICLE_DATA);
                 setLoading(false);
 
             })
@@ -236,7 +101,7 @@ const InfiniteListExample = () => {
                                             title={<Link to={`detail/${item.id}`} style={{ color: '#fff', fontSize: 18 }}>{item.title}</Link>}
                                         />
                                         <div style={{ overflow: 'auto', color: '#fff' }}>
-                                            {item.content}
+                                            {item.description}
                                             <div style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                                                 <div>
                                                     <TagTwoTone twoToneColor='purple' style={{ fontSize: 30 }} />
