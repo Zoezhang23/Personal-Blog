@@ -4,11 +4,11 @@ import './index.scss'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { loginContext } from '../../../App'
+import { LoginContext } from '../../../App'
 
 
 export default function LoginForm(props) {
-    const { setIsLogin } = useContext(loginContext)
+    const { setIsLogin } = useContext(LoginContext)
     const navigate = useNavigate();
     const onFinish = (values) => {
         const user = localStorage.getItem('user');

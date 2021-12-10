@@ -10,8 +10,8 @@ export function LoginSuccess() {
         <div className='login'>
             <Result
                 icon={<SmileOutlined />}
-                title="Great, Success!"
-                extra={<Button type="primary" onClick={() => { navigate('/home') }}>Close</Button>}
+                title="Do you have your avater?"
+                extra={<div><Button type="primary" onClick={() => { navigate('/home') }}>Yes,I do</Button> <Button type="primary" onClick={() => { navigate('/personalInfo') }}>No,need now!</Button> </div>}
             />
         </div>
     )

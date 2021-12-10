@@ -3,6 +3,8 @@ import { Comment, Tooltip, Avatar, Form, Button, List, Input } from 'antd';
 import moment from 'moment';
 import { LikeFilled, StarFilled, LikeOutlined, StarOutlined, MessageFilled } from '@ant-design/icons';
 import { ARTICLE_DATA } from '../../../data';
+import { UserLoginContext } from '../../../../App'
+
 
 
 
@@ -125,25 +127,27 @@ export default class CommentsEditor extends React.Component {
             value: e.target.value,
         });
     };
-
     render() {
         const { comments, submitting, value } = this.state;
-        console.log(user)
+        { comments.length > 0 && <CommentList comments={comments} /> }
         return (
-            <>
-                {comments.length > 0 && <CommentList comments={comments} />}
-                <Comment
-                    avatar={user ? <Avatar src={user.avatar} /> : <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-                    content={
-                        <Editor
-                            onChange={this.handleChange}
-                            onSubmit={this.handleSubmit}
-                            submitting={submitting}
-                            value={value}
-                        />
-                    }
-                />
-            </>
-        );
+            <UserLoginContext>{(isLogin) => {
+                return (
+                    < Comment
+                        avatar={isLogin.isLogin ? <Avatar src={user.avatar} /> : <Avatar src="https://joeschmoe.io/api/v1/random" alt="Anonymous" />}
+                        content={
+                            < Editor
+                                onChange={this.handleChange}
+                                onSubmit={this.handleSubmit}
+                                submitting={submitting}
+                                value={value}
+                            />
+                        }
+                    />
+                )
+            }}
+
+            </UserLoginContext>
+        )
     }
 }

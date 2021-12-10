@@ -9,11 +9,9 @@ import CommentsEditor from './Comments/index'
 
 
 
-
 export default function Detail() {
     const { id } = useParams();
     const item = ARTICLE_DATA.find(item => item.id === id);
-
     return (
         <div className='article-detail'>
             <div style={{ display: 'flex', flexDirection: 'column', overflow: 'auto' }}>

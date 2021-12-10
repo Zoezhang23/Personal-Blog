@@ -1,12 +1,12 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { Menu } from 'antd';
-import { loginContext } from '../../App';
+import { LoginContext } from '../../App';
 import { useContext } from 'react';
 
 export default function MenuItem(props) {
     const navigate = useNavigate();
-    const { setIsLogin } = useContext(loginContext)
+    const { setIsLogin } = useContext(LoginContext)
     function handleClick() {
         return (e) => {
             e.domEvent.nativeEvent.preventDefault();

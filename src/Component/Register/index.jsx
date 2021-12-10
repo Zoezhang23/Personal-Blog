@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Input, Select, Checkbox, Button, Result, } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
+import { Form, Input, Select, Checkbox, Button, Result, Avatar } from 'antd';
+import { SmileOutlined, UserOutlined } from '@ant-design/icons';
 import './index.scss'
 
 
@@ -36,6 +36,7 @@ export function Register() {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
+        values = { avatar: '', ...values }
         localStorage.setItem('user', JSON.stringify(values));
         navigate('/home/registerSuccess')
     }
@@ -192,8 +193,8 @@ export function RegisterSuccess() {
         <div className='register-success'>
             <Result
                 icon={<SmileOutlined />}
-                title="Great, Success!"
-                extra={<Button type="primary" onClick={() => { navigate('/home') }}>Close</Button>}
+                title="Great, go to login!"
+                extra={<Button type="primary" onClick={() => { navigate('/home') }}>Go</Button>}
             />
         </div>
     )
