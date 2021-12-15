@@ -282,8 +282,4 @@ export const randomColor = () => {
     return colors[randomNum(1, 15)];
 };
 
-export const Icon = {
-    github: "http://www.nevergiveupt.top/github.png",
-    sf: "http://www.nevergiveupt.top/sf.jpeg",
-    zhihu: "http://www.nevergiveupt.top/zhihu.jpg",
-};
+
